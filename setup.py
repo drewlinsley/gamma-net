@@ -13,6 +13,10 @@ setup(
     packages=find_packages(),
 )
 
+config = Config()
+log = logger.get(os.path.join(config.log_dir, 'setup'))
+log.info('Installed required packages and created paths.')
+
 params = credentials.postgresql_connection()
 sys_password = credentials.machine_credentials()['password']
 os.popen(
@@ -22,7 +26,4 @@ os.popen(
     'sudo -u postgres createdb %s -O %s' % (
         params['database'],
         params['user']), 'w').write(sys_password)
-
-config = Config()
-log = logger.get(os.path.join(config.log_dir, 'setup'))
-log.info('Installed required packages and created DB.')
+log.info('Created DB.')
