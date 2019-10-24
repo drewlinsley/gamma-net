@@ -12,8 +12,8 @@ class Config:
         self.project_directory = '/media/data_cifs/cluttered_nist_experiments/'
         self.tf_records = os.path.join(
             self.project_directory,
-            'tf_records')
-        self.local_tf_records = os.path.join('tf_records')
+            'tf_records')  # Alternative, slow I/O path for tfrecords.
+        self.local_tf_records = self.tf_records  # Primary path for tfrecords.
         self.checkpoints = os.path.join(
             self.project_directory,
             'checkpoints')
@@ -68,4 +68,3 @@ class Config:
     def __contains__(self, name):
         """Check if class contains field."""
         return hasattr(self, name)
-
