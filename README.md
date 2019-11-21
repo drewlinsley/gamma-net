@@ -4,7 +4,8 @@
 	- Do the same for `db/credentials.py`
 	- run `python setup.py install`
 	- Download the data files from http://bit.ly/bsds_tfrecords. Place the files in the `self.tf_records` directory that you specified in `config.py`.
-	+ You can ignore errors with psql install and database creation.
+	- Download the model checkpoint files from http://bit.ly/gammanet_bsds_100. These are from a gammanet trained on the full BSDS500 without augmentations (i.e., under sample constraints). Place these anywhere but keep track of the checkpoint for section 2.
+	- (You can ignore errors with psql install and database creation.)
 1. Train a model.
 	- `CUDA_VISIBLE_DEVICES=0 python run_job.py --experiment=BSDS500_combos_100_no_aux --no_db --model=BSDS_vgg_cheap_deepest_final_simple --train=BSDS500_100_jk --val=BSDS500_100_jk`
 2. Test a model.
